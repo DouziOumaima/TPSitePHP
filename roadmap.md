@@ -4,15 +4,15 @@ Créer un site qui permet aux utilisateurs de s'authentifier et d'ajouter des po
 
 ## Base de donnée
 
-Table: users: id, email, password, avatarURL, coverURL, role, Done 
+Table: users: id, email, password, avatarURL, coverURL, role  DONE
 
-Table: posts: id, titre, contenu, date, postImage, auteurID, Done
+Table: posts: id, titre, contenu, date, postImage, auteurID DONE
 
 
-## Accueil: 
-
-Afficher tous les posts de tous les utilisateurs ordonnés par date. (les plus récents d'abord).
-
+## Accueil
+  dans un dossier components:
+   header 
+   navbar
 
 ## Login: 
 
@@ -32,15 +32,18 @@ Les informations de l'utilisateur (avatar, username, email, couverture), un form
 - Afficher l'avatar de l'utilisateur, sinon afficher une image par défaut. 
 
 - Un formulaire pour changer l'image de couverture.
-- - Un script (/routes/uploadCover.php), enregistre l'image de couverture, et met a jour l'utilisateur dans la base de données.DONE
+- - Un script (/routes/uploadCover.php), enregistre l'image de couverture, et met a jour l'utilisateur dans la base de données.
 
 - Un formulaire pour changer l'image de profil.
-- - Un script (/routes/uploadAvatar.php), enregistre l'image de l'avatar, et met a jour l'utilisateur dans la base de données.DONE
+- - Un script (/routes/uploadPost.php), enregistre l'image de l'avatar, et met a jour l'utilisateur dans la base de données.
 
 - Afficher le formulaire pour ajouter un post
-- - Un script (/routes/uploadAvatar.php), enregistre l'image, et met a jour l'utilisateur dans la base de données.DONE
+- - Un script (/routes/uploadPost.php), enregistre l'image, et met a jour l'utilisateur dans la base de données 
 
 - Afficher tous les posts de l'utilisateur:
     - Un post c'est un titre, une image optionnelle, contenu.
 
 
+## Accueil: 
+
+Afficher tous les posts de tous les utilisateurs ordonnés par date. (les plus récents d'abord).
