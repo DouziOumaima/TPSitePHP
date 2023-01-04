@@ -179,4 +179,15 @@ class UserController
     {
         return $this->isEmailValid() && $this->isPasswordValid() && $this->isUsernameValid();
     }
+
+    function exist()
+    {
+        $userModel = new UserModel($this->username, $this->email, $this->password);
+
+        $userTab = $userModel ->fetch();// fetch elle retourne la valeur qu'elle a trouver dans la DB
+        var_dump($userTab);
+    if (count($userTab) === 0) {
+      return false;
+    }
+}
 }

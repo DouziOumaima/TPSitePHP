@@ -1,4 +1,32 @@
+<?php
+
+$inscriptionUsernameError = "";
+
+$inscriptionEmailError = "";
+
+$inscriptionPassword = "";
+
+
+
+if (isset($_GET['inscription'])) {
+    if (isset($_GET['usernameError'])) {
+        $inscriptionUsernameError = $_GET['usernameError'] === "InputInvalid" ? "Username incorrecte" : "Username exist";
+    }
+}
+if (isset($_GET['inscription'])) {
+    if (isset($_GET['emailError'])) {
+        $inscriptionEmailError = $_GET['emailError'] === "InputInvalid" ? "Email incorrecte" : "Email existe deja!";
+    }
+
+    if (isset($_GET['passwordError'])) {
+        $inscriptionPasswordError = $_GET['passwordError'] === "InputInvalid" ? "Mot de passe trop court" : "";
+    }
+}
+?>
+
+
 <!DOCTYPE html>
+
 <html lang="en">
 <?php
 $title = "Se connecter";
