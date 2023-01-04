@@ -32,7 +32,7 @@ include_once  $_SERVER['DOCUMENT_ROOT'] . "/models/DB.php";
   }
 
   function addToDB(){
-    $stmt = $this -> getConnect() -> prepare('INSERT INTO users ( username, email, password) VALUES (? ,?)');
+    $stmt = $this -> getConnect() -> prepare('INSERT INTO users ( username, email, password) VALUES (? ,? ,?)');
 
     $stmt -> bindParam(1, $this -> username);
     $stmt -> bindParam(2, $this -> email);

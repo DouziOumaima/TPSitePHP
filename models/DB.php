@@ -11,8 +11,6 @@
 
      }
 
-
-
      /**
       * Get the value of connect
       */ 
