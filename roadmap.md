@@ -15,13 +15,25 @@ Table: posts: id, titre, contenu, date, postImage, auteurID DONE
    navbar DONE 
 
 ## Login: 
-
+ 
 S'authentifier (email unique, username, password).
-- Un formulaire pour s'inscrire 
+
+- Un formulaire pour s'inscrire DONE
+
 - Script pour ajouter un user dans la base de données 
 
-- formulaire de connection 
+- Créer dossier Models (DB, userModel) DONE
+
+- script connexion DB
+
+ - script verification des données saisie (userController)
+
+ - stocker le user a la DB
+
+- formulaire de connection DONE
+
 - script pour verifier si l'utilisateur a donné un email et password valide 
+
 - Stocker les infos (id, email, avatar, role) quelque part dans la session 
 
 

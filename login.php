@@ -27,7 +27,6 @@ include_once "./components/head.php"
             <form action="/routes/signin.php" method="post">
                 <input type="email" name="email" placeholder="jhon .doe@exemple.com" />
                 <input type="password" name=" password" placeholder="Mot de passe">
-
                 <button>Valider</button>
             </form>
 
