@@ -11,8 +11,8 @@ Table: posts: id, titre, contenu, date, postImage, auteurID DONE
 
 ## Accueil
   dans un dossier components:
-   header 
-   navbar
+   header DONE
+   navbar DONE 
 
 ## Login: 
 
