@@ -2,6 +2,12 @@
 
 Créer un site qui permet aux utilisateurs de s'authentifier et d'ajouter des posts.
 
+## Base de donnée
+
+Table: users: id, email, password, avatarURL, coverURL, role, Done 
+
+Table: posts: id, titre, contenu, date, postImage, auteurID, Done
+
 
 ## Accueil: 
 
@@ -38,8 +44,3 @@ Les informations de l'utilisateur (avatar, username, email, couverture), un form
     - Un post c'est un titre, une image optionnelle, contenu.
 
 
-## Base de donnée
-
-Table: users: id, email, password, avatarURL, coverURL, role DONE
-
-Table: posts: id, titre, contenu, date, postImage, auteurID 
