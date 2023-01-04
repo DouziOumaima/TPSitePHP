@@ -14,10 +14,18 @@ if(isset( $_POST ['username'],  $_POST['email'], $_POST['password'] )){
          header ('Location : /login?inscription=error&emailError=EmailExist');
          die();
         }
-        if($user -> exist()){
-            header ('Location : /login?inscription=error&usernameError=UsernameExist');
-            die();
-           }
-            
+        $user -> signupUser();
+        header('Location: /login.php');
+  
+      }else{
+        $returnData = $user -> getErrors();
+        header('Location: /login.php?inscription=error&' . $returnData);
+      }
+  
+    }else{
+      header('Location: /login.php');
     }
-}
+  
+            
+    
+

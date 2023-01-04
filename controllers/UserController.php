@@ -190,5 +190,21 @@ class UserController
       return false;
     }
 }
+function signupUser(){
+    //Utiliser une class UserModel pour ajouter les user dans la DB.
+    $userModel = new UserModel( $this -> username ,$this -> email, $this -> password);
+    $userModel -> addToDB();
 
+  }
+
+   function getErrors(){
+    $errors = [];
+    !$this ->isUsernameValid() ? array_push($errors, "usernameError=InputInvalid"): null;
+    !$this ->isEmailValid() ? array_push($errors, "emailError=InputInvalid") : null;
+    !$this ->isPasswordValid() ? array_push($errors, "passwordError=InputInvalid") : null;
+
+    return join("&", $errors);
+
+
+ }
 }
