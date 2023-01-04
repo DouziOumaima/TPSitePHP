@@ -12,4 +12,15 @@
      }
 
 
+
+     /**
+      * Get the value of connect
+      */ 
+     protected function getConnect()
+     {
+          return $this->connect;
+     }
+     static function getConnection(){
+      return new self();
+    }
   }

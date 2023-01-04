@@ -30,4 +30,14 @@ include_once  $_SERVER['DOCUMENT_ROOT'] . "/models/DB.php";
     
     return $userFromDB;
   }
- }
+
+  function addToDB(){
+    $stmt = $this -> getConnect() -> prepare('INSERT INTO users ( username, email, password) VALUES (? ,?)');
+
+    $stmt -> bindParam(1, $this -> username);
+    $stmt -> bindParam(2, $this -> email);
+    $stmt -> bindParam(3, $this -> password);
+
+    $stmt -> execute();
+}
+}

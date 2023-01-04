@@ -2,7 +2,6 @@
 
 include_once $_SERVER['DOCUMENT_ROOT']. "/controllers/UserController.php";
 
-var_dump($_POST);
 
 
 if(isset( $_POST ['username'],  $_POST['email'], $_POST['password'] )){
@@ -19,6 +18,6 @@ if(isset( $_POST ['username'],  $_POST['email'], $_POST['password'] )){
             header ('Location : /login?inscription=error&usernameError=UsernameExist');
             die();
            }
-
+            
     }
 }
