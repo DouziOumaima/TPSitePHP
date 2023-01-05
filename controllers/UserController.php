@@ -240,13 +240,16 @@ class UserController
 
     }
     function getConnexionErrors(){
-        
+
         $errors = [];
         !$this->isEmailValid() ? array_push($errors, "emailError=InputInvalid") : null;
 
         !$this->isPasswordValid() ? array_push($errors, "passwordError=InputInvalid") : null;
 
         return join("&", $errors);
+        
+        //var_dump( 'getConnexionErrors');
+        //var_dump ('errors');
     }
 
     /**

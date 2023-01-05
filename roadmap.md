@@ -30,7 +30,7 @@ S'authentifier (email unique, username, password).
 
  - stocker le user a la DB DONE
 
-- formulaire de connection DONE
+- formulaire de connexion DONE
 
 - script pour verifier si l'utilisateur a donné un email et password valide Et confirmation de password  DONE
 

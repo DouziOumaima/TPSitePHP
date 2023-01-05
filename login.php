@@ -32,24 +32,25 @@ if (isset($_GET['inscription'])) {
         "InputInvalid" ? " Ressaisir le meme mot de passe" : "";
       }
     }
+     //var_dump($_GET);
       //var_dump($inscriptionRePasswordError);
 // on n'a pas les msg qui s'affichent
   
 if (isset($_GET['connexion'])) {
-    if (isset($_GET['connexionEmailError'])) {
-        $connexionEmailError = $_GET['EmailError'] === "InputInvalid" ? "Email incorrecte" : "";
+    if (isset($_GET['emailError'])) {
+        $connexionEmailError = $_GET['emailError'] === "InputInvalid" ? "Email incorrecte" : "";
+    }
+    if(isset ($_GET['emailError'])){
+        $connexionEmailError = $_GET['emailError']==="EmailDoesntExist"? "Email n'existe pas": "";
     }
     
-        if (isset($_GET['connexionPasswordError'])) {
-            $connexionPasswordError = $_GET['PasswordError'] === "InputInvalid" ? "Password incorrecte" : "";
+        if (isset($_GET['passwordError'])) {
+            $connexionPasswordError = $_GET['passwordError'] === "InputInvalid" ? "Password incorrecte" : "";
         }
-        
-        
 }
   
 ?>
 <!DOCTYPE html>
-
 <html lang="en">
 <?php
 $title = "Se connecter";
@@ -84,7 +85,7 @@ include_once "./components/head.php"
                   <?= $inscriptionUsernameError ?>
                    </p>
 
-               
+              
                 <input
                 class='<?= $inscriptionPasswordError !=="" ? "inputError" : "" ?>'
                 type="password" 
@@ -107,8 +108,6 @@ include_once "./components/head.php"
                  //var_dump($_GET);
                  ?> 
                 </p>
-
-
                 <button>Valider</button>
             </form>
         </section>
@@ -136,7 +135,9 @@ include_once "./components/head.php"
                 <button>Valider</button>
             </form>
 
-
+            <?php 
+           // var_dump($connexionPasswordError);
+            ?> 
 
         </section>
 

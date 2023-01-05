@@ -23,22 +23,24 @@ if(!(isset($_POST['email'], $_POST['password']))){
         header("Location: /login.php?connexion=error&emailError=EmailDoesntExist" );
         die();
       }
-      
+
       if(!$user -> isPasswordCorrect()){
          header("Location: /login.php?connexion=error&passwordError=PasswordIncorrect" );
          die();
+
+         var_dump('getConnexionErrors');
        }
   //var_dump($_SESSION);
 
 //$_SESSION["id"] = $user -> getId();
 //$_SESSION['username']=$user ->getUsername();
-//$_SESSION["email"] = $user ->getEmail();
-//$_SESSION["password"] = $user ->getPassword();
-/*$_SESSION["avatar"] = $user -> getAvatar();
-$_SESSION["cover"] = $user -> getCover();
-$_SESSION["role"] = $user -> getRole();
+$_SESSION["email"] = $user ->getEmail();
+$_SESSION["password"] = $user ->getPassword();
+//*$_SESSION["avatar"] = $user -> getAvatar();
+//$_SESSION["cover"] = $user -> getCover();
+//$_SESSION["role"] = $user -> getRole();
 
-*/
+
 header("Location: /profil.php");
 
 
