@@ -43,6 +43,16 @@ include_once  $_SERVER['DOCUMENT_ROOT'] . "/models/DB.php";
 
     $stmt -> execute();
 }
+static function fetchByID($id){
+  $connect = DB::getConnection();
+
+  $stmt = $connect -> getConnect() -> prepare('SELECT * FROM users WHERE id=?');
+
+  $stmt -> bindParam(1, $id);
+  $res = $stmt ->execute();
+  $userFromDB = $stmt -> fetch(PDO::FETCH_ASSOC);
+  return $userFromDB;
+}
 
 //creer la function fetch  et utiliser la et stmt , connexion (getConnect)
 }

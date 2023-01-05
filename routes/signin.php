@@ -32,13 +32,13 @@ if(!(isset($_POST['email'], $_POST['password']))){
        }
   //var_dump($_SESSION);
 
-//$_SESSION["id"] = $user -> getId();
-//$_SESSION['username']=$user ->getUsername();
+$_SESSION["id"] = $user -> getId();
+$_SESSION['username']=$user ->getUsername();
 $_SESSION["email"] = $user ->getEmail();
-$_SESSION["password"] = $user ->getPassword();
-//*$_SESSION["avatar"] = $user -> getAvatar();
-//$_SESSION["cover"] = $user -> getCover();
-//$_SESSION["role"] = $user -> getRole();
+//$_SESSION["password"] = $user ->getPassword();
+$_SESSION["avatar"] = $user -> getAvatar();
+$_SESSION["cover"] = $user -> getCover();
+$_SESSION["role"] = $user -> getRole();
 
 
 header("Location: /profil.php");

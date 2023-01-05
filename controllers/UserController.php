@@ -199,6 +199,12 @@ class UserController
         if (count($userTab) === 0) {
             return false;
         } else {
+
+            $this -> id = $userTab['id'];
+            $this -> avatar = $userTab['avatar'];
+            $this -> role = $userTab['role'];
+            $this -> cover = $userTab['cover'];
+            
             return true;
         }
     }
@@ -239,7 +245,8 @@ class UserController
         // </script>
 
     }
-    function getConnexionErrors(){
+    function getConnexionErrors()
+    {
 
         $errors = [];
         !$this->isEmailValid() ? array_push($errors, "emailError=InputInvalid") : null;
@@ -247,7 +254,7 @@ class UserController
         !$this->isPasswordValid() ? array_push($errors, "passwordError=InputInvalid") : null;
 
         return join("&", $errors);
-        
+
         //var_dump( 'getConnexionErrors');
         //var_dump ('errors');
     }
@@ -258,5 +265,22 @@ class UserController
     public function getRePassword()
     {
         return $this->RePassword;
+    }
+
+    static function createUserFromId($id)
+    {
+        $userFromDB = UserModel::fetchByID($id);
+
+        $controller = new self($userFromDB['username'], $userFromDB['email'], $userFromDB['password'], $userFromDB['password']);
+
+        $controller->id = $id;
+        $controller->username = $userFromDB['username'];
+        //$controller->role = $userFromDB['role'];
+        //$controller->avatar = $userFromDB['avatar'];
+        //$controller->cover = $userFromDB['cover'];
+
+        // $controller -> posts = PostsController::fetchAll($id);
+
+        return $controller;
     }
 }

@@ -34,7 +34,7 @@ S'authentifier (email unique, username, password).
 
 - script pour verifier si l'utilisateur a donné un email et password valide Et confirmation de password  DONE
 
-- Stocker les infos (id, email, avatar, role) quelque part dans la session 
+- Stocker les infos (id, email, avatar, role) quelque part dans la session DONE
 
 
 ## Profil: 
