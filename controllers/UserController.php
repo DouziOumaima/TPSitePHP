@@ -11,6 +11,7 @@ class UserController
     private $avatar;
     private $cover;
     private $role;
+    private $RePassword;
     private $posts = [];
 
     private $userModel; // pour ajouter des users dand la DB
@@ -19,13 +20,14 @@ class UserController
 
     private const MIN_USERNAME_LENGTH = 3;
 
-    function __construct(string $username, string $email, string $password)
+    function __construct(string $username, string $email, string $password, string $RePassword)
     {
         $this->username = $username;
         $this->email = $email;
         $this->password = $password;
+        $this ->RePassword = $RePassword;
 
-        $this->userModel = new UserModel($username, $email, $password);
+        $this->userModel = new UserModel($username, $email, $password, $RePassword);
     }
 
     /**
@@ -160,7 +162,7 @@ class UserController
 
         return $this;
     }
-
+     
     function isEmailValid(): bool // verfier que l'email est valid (a une format email)
     {
         return filter_var($this->email, FILTER_VALIDATE_EMAIL);
@@ -175,14 +177,21 @@ class UserController
     {
         return strlen($this->password) >= self::MIN_PASSWORD_LENGTH;
     }
+     
+    function isPasswordSame(): bool {
+       return $this -> password === $this -> RePassword;
+
+    }
+
+
     function isDataValid(): bool
     {
-        return $this->isEmailValid() && $this->isPasswordValid() && $this->isUsernameValid();
+        return $this->isEmailValid() && $this->isPasswordValid() && $this->isUsernameValid() && $this->isPasswordSame();
     }
 
     function exist()
     {
-        $userModel = new UserModel($this->username, $this->email, $this->password);
+        $userModel = new UserModel($this->username, $this->email, $this->password, $this->RePassword);
 
         $userTab = $userModel->fetch(); // fetch elle retourne la valeur qu'elle a trouver dans la DB
         // var_dump($userTab);
@@ -195,7 +204,7 @@ class UserController
     function signupUser()
     {
         //Utiliser une class UserModel pour ajouter les user dans la DB.
-        $userModel = new UserModel($this->username, $this->email, $this->password);
+        $userModel = new UserModel($this->username, $this->email, $this->password, $this -> RePassword);
         $userModel->addToDB();
     }
     // --> le cas de email  pas valid et password  pas valid : retourner emailError=InputInvalid & passwordError=InputInvalid
@@ -208,6 +217,8 @@ class UserController
         !$this->isEmailValid() ? array_push($errors, "emailError=InputInvalid") : null;
         // si email valid et password pas valid returner passwordError=InputInvalid
         !$this->isPasswordValid() ? array_push($errors, "passwordError=InputInvalid") : null;
+        
+        !$this->isPasswordSame() ? array_push($errors, "RePasswordError=InputInvalid") : null;
 
         return join("&", $errors);
 
@@ -216,5 +227,13 @@ class UserController
         //let aText = a.join('&'); -> "a&b&c" rajout des & entre les string
         // </script>
 
+    }
+
+    /**
+     * Get the value of RePassword
+     */ 
+    public function getRePassword()
+    {
+        return $this->RePassword;
     }
 }

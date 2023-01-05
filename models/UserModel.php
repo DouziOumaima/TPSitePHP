@@ -6,13 +6,15 @@ include_once  $_SERVER['DOCUMENT_ROOT'] . "/models/DB.php";
     private $username;
     private $email;
     private $password;
-     
-    function __construct($username , $email , $password){
+    private $RePassword; 
+
+    function __construct($username , $email , $password ,$RePassword){
         parent::__construct();
 
         $this -> username= $username ;
         $this -> email=  $email;
         $this ->  password = $password;
+        $this -> RePassword = $RePassword ;
     }
     function fetch() : array {
         $stmt = $this -> getConnect() -> prepare('SELECT * FROM users WHERE email=?');

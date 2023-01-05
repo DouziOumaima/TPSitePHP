@@ -4,8 +4,9 @@ $inscriptionUsernameError = "";
 
 $inscriptionEmailError = "";
 
-$inscriptionPassword = "";
+$inscriptionPasswordError = "";
 
+$inscriptionRePasswordError ="";
 
 
 if (isset($_GET['inscription'])) {
@@ -20,10 +21,15 @@ if (isset($_GET['inscription'])) {
     if (isset($_GET['passwordError'])) {
         $inscriptionPasswordError = $_GET['passwordError'] === "InputInvalid" ? "Mot de passe trop court" : "";
     }
+    //var_dump($_GET['RePasswordError']);
+    if(isset($_GET['RePasswordError'])){
+        $inscriptionRePasswordError = $_GET['RePasswordError'] ===
+        "InputInvalid" ? " Ressaisir le meme mot de passe" : "";
+      }
+      //var_dump($inscriptionRePasswordError);
 } // on n'a pas les msg qui s'affichent
+  
 ?>
-
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -43,14 +49,53 @@ include_once "./components/head.php"
             <h2> Inscription </h2>
             <form action="/routes/signup.php" method="post">
                 <!-- dans l'input on a changer le type d'email par text pour eviter que le frontend nous arretent de mettre un faux email il va pas tester si c'est un email ou pas-->
-                <input type="email" name="email" placeholder="jhon.doe@exemple.com" />
-                <input type="text" name="username" placeholder="username">
-                <input type="password" name=" password" placeholder="Mot de passe">
-                <input type="password" name=" repass" placeholder="Confirmer le mot de passe">
+                <input class='<?= $inscriptionEmailError !== "" ? "inputError" : "" ?>' 
+                type="email"
+                name="email"
+                placeholder="jhon.doe@exemple.com" />
+                 <p class ="error">
+                    <?= $inscriptionEmailError ?>
+                 </p>
+
+                <input class='<?= $inscriptionUsernameError !=="" ? "inputError" : "" ?>' 
+                type="text" 
+                name="username" 
+                placeholder="username"/>
+
+                <p class="error">
+                  <?= $inscriptionUsernameError ?>
+                   </p>
+
+               
+                <input
+                class='<?= $inscriptionPasswordError !=="" ? "inputError" : "" ?>'
+                type="password" 
+                name=" password" 
+                placeholder="Mot de passe "/>
+
+                <p class="error">
+                    <?= $inscriptionPasswordError ?>
+                    </p>
+
+                <input  class='<?= $inscriptionRePasswordError !=="" ? "inputError" : "" ?>'
+                type="password"
+                name=" RePassword" 
+                placeholder="Confirmer le mot de passe"/>
+
+                <p class="error">
+                    <?= $inscriptionRePasswordError ?>
+                
+                 <?php 
+                 //var_dump($_GET);
+                 ?> 
+                </p>
+
+
                 <button>Valider</button>
             </form>
         </section>
         <section>
+
             <h2>Connexion</h2>
             <form action="/routes/signin.php" method="post">
                 <input type="email" name="email" placeholder="jhon .doe@exemple.com" />
