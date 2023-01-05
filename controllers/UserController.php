@@ -1,4 +1,5 @@
 <?php
+
 include_once $_SERVER['DOCUMENT_ROOT'] . "/models/UserModel.php";
 
 class UserController
@@ -19,7 +20,7 @@ class UserController
     private const MIN_PASSWORD_LENGTH = 6;
 
     private const MIN_USERNAME_LENGTH = 3;
-
+    
     function __construct(string $username, string $email, string $password, string $RePassword)
     {
         $this->username = $username;
@@ -206,6 +207,8 @@ class UserController
         //Utiliser une class UserModel pour ajouter les user dans la DB.
         $userModel = new UserModel($this->username, $this->email, $this->password, $this -> RePassword);
         $userModel->addToDB();
+        // apres cette etape il faut créer une function exist
+        // on va instancier notre userModel($userModel = new UserModel($this-> ...)) Apres faut avoir une var UserTab et créer une fetch pour aller chercher avec email m'utilisateur et vas nous rendre un Tab Asso qui represente l'utilisateur si elle l'a trouver sinon elle va rendre false si y'a 2 fois l'utilisateur
     }
     // --> le cas de email  pas valid et password  pas valid : retourner emailError=InputInvalid & passwordError=InputInvalid
     function getErrors()

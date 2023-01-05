@@ -1,4 +1,5 @@
 <?php 
+
 include_once  $_SERVER['DOCUMENT_ROOT'] . "/models/DB.php";
 
  class UserModel extends DB{
@@ -42,4 +43,6 @@ include_once  $_SERVER['DOCUMENT_ROOT'] . "/models/DB.php";
 
     $stmt -> execute();
 }
+
+//creer la function fetch  et utiliser la et stmt , connexion (getConnect)
 }

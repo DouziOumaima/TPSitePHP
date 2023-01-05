@@ -20,19 +20,19 @@ S'authentifier (email unique, username, password).
 
 - Un formulaire pour s'inscrire DONE
 
-- Script pour ajouter un user dans la base de données 
+- Script pour ajouter un user dans la base de données DONE
 
 - Créer dossier Models (DB, userModel) DONE
 
-- script connexion DB
+- script connexion DB DONE
 
- - script verification des données saisie (userController)
+ - script verification des données saisie (userController) DONE
 
- - stocker le user a la DB
+ - stocker le user a la DB DONE
 
 - formulaire de connection DONE
 
-- script pour verifier si l'utilisateur a donné un email et password valide 
+- script pour verifier si l'utilisateur a donné un email et password valide Et confirmation de password  DONE
 
 - Stocker les infos (id, email, avatar, role) quelque part dans la session 
 
