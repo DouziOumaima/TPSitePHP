@@ -184,29 +184,37 @@ class UserController
     {
         $userModel = new UserModel($this->username, $this->email, $this->password);
 
-        $userTab = $userModel ->fetch();// fetch elle retourne la valeur qu'elle a trouver dans la DB
-       // var_dump($userTab);
-    if (count($userTab) === 0) {
-      return false;
-    } else{
-        return true;
+        $userTab = $userModel->fetch(); // fetch elle retourne la valeur qu'elle a trouver dans la DB
+        // var_dump($userTab);
+        if (count($userTab) === 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
-}
-function signupUser(){
-    //Utiliser une class UserModel pour ajouter les user dans la DB.
-    $userModel = new UserModel( $this -> username ,$this -> email, $this -> password);
-    $userModel -> addToDB();
+    function signupUser()
+    {
+        //Utiliser une class UserModel pour ajouter les user dans la DB.
+        $userModel = new UserModel($this->username, $this->email, $this->password);
+        $userModel->addToDB();
+    }
+    // --> le cas de email  pas valid et password  pas valid : retourner emailError=InputInvalid & passwordError=InputInvalid
+    function getErrors()
+    {
+        // Si username pas valid : UsernamError=InputInvalid
+        $errors = [];
+        !$this->isUsernameValid() ? array_push($errors, "usernameError=InputInvalid") : null;
+        // email pas Valid et password valid : emailError=InputInvalid
+        !$this->isEmailValid() ? array_push($errors, "emailError=InputInvalid") : null;
+        // si email valid et password pas valid returner passwordError=InputInvalid
+        !$this->isPasswordValid() ? array_push($errors, "passwordError=InputInvalid") : null;
 
-  }
+        return join("&", $errors);
 
-   function getErrors(){
-    $errors = [];
-    !$this ->isUsernameValid() ? array_push($errors, "usernameError=InputInvalid"): null;
-    !$this ->isEmailValid() ? array_push($errors, "emailError=InputInvalid") : null;
-    !$this ->isPasswordValid() ? array_push($errors, "passwordError=InputInvalid") : null;
+        // explication de join dans js : contraire de join implode
+        // <script> let a =['a', 'b','c'];
+        //let aText = a.join('&'); -> "a&b&c" rajout des & entre les string
+        // </script>
 
-    return join("&", $errors);
-
-
- }
+    }
 }

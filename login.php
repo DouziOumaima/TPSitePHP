@@ -17,11 +17,10 @@ if (isset($_GET['inscription'])) {
     if (isset($_GET['emailError'])) {
         $inscriptionEmailError = $_GET['emailError'] === "InputInvalid" ? "Email incorrecte" : "Email existe deja!";
     }
-
     if (isset($_GET['passwordError'])) {
         $inscriptionPasswordError = $_GET['passwordError'] === "InputInvalid" ? "Mot de passe trop court" : "";
     }
-}
+} // on n'a pas les msg qui s'affichent
 ?>
 
 
@@ -43,10 +42,11 @@ include_once "./components/head.php"
         <section>
             <h2> Inscription </h2>
             <form action="/routes/signup.php" method="post">
-                <input type="email" name="email" placeholder="jhon .doe@exemple.com" />
+                <!-- dans l'input on a changer le type d'email par text pour eviter que le frontend nous arretent de mettre un faux email il va pas tester si c'est un email ou pas-->
+                <input type="email" name="email" placeholder="jhon.doe@exemple.com" />
                 <input type="text" name="username" placeholder="username">
                 <input type="password" name=" password" placeholder="Mot de passe">
-                <input type="password" name=" password" placeholder="Confirmer le mot de passe">
+                <input type="password" name=" repass" placeholder="Confirmer le mot de passe">
                 <button>Valider</button>
             </form>
         </section>
