@@ -20,13 +20,13 @@ class UserController
     private const MIN_PASSWORD_LENGTH = 6;
 
     private const MIN_USERNAME_LENGTH = 3;
-    
+
     function __construct(string $username, string $email, string $password, string $RePassword)
     {
         $this->username = $username;
         $this->email = $email;
         $this->password = $password;
-        $this ->RePassword = $RePassword;
+        $this->RePassword = $RePassword;
 
         $this->userModel = new UserModel($username, $email, $password, $RePassword);
     }
@@ -163,7 +163,7 @@ class UserController
 
         return $this;
     }
-     
+
     function isEmailValid(): bool // verfier que l'email est valid (a une format email)
     {
         return filter_var($this->email, FILTER_VALIDATE_EMAIL);
@@ -178,10 +178,10 @@ class UserController
     {
         return strlen($this->password) >= self::MIN_PASSWORD_LENGTH;
     }
-     
-    function isPasswordSame(): bool {
-       return $this -> password === $this -> RePassword;
 
+    function isPasswordSame(): bool
+    {
+        return $this->password === $this->RePassword;
     }
 
 
@@ -202,14 +202,22 @@ class UserController
             return true;
         }
     }
+    function isPasswordCorrect()
+    {
+        $userFromDB = $this->userModel->fetch();
+
+        return $userFromDB['password'] === $this->password;
+    }
+
     function signupUser()
     {
         //Utiliser une class UserModel pour ajouter les user dans la DB.
-        $userModel = new UserModel($this->username, $this->email, $this->password, $this -> RePassword);
+        $userModel = new UserModel($this->username, $this->email, $this->password, $this->RePassword);
         $userModel->addToDB();
         // apres cette etape il faut créer une function exist
-        // on va instancier notre userModel($userModel = new UserModel($this-> ...)) Apres faut avoir une var UserTab et créer une fetch pour aller chercher avec email m'utilisateur et vas nous rendre un Tab Asso qui represente l'utilisateur si elle l'a trouver sinon elle va rendre false si y'a 2 fois l'utilisateur
+        // on va instancier notre userModel($userModel = new UserModel($this-> ...)) Apres faut avoir une var UserTab et créer une fetch pour aller chercher avec email l'utilisateur et vas nous rendre un Tab Asso qui represente l'utilisateur si elle l'a trouver sinon elle va rendre false si y'a 2 fois l'utilisateur
     }
+
     // --> le cas de email  pas valid et password  pas valid : retourner emailError=InputInvalid & passwordError=InputInvalid
     function getErrors()
     {
@@ -220,7 +228,7 @@ class UserController
         !$this->isEmailValid() ? array_push($errors, "emailError=InputInvalid") : null;
         // si email valid et password pas valid returner passwordError=InputInvalid
         !$this->isPasswordValid() ? array_push($errors, "passwordError=InputInvalid") : null;
-        
+
         !$this->isPasswordSame() ? array_push($errors, "RePasswordError=InputInvalid") : null;
 
         return join("&", $errors);
@@ -231,10 +239,19 @@ class UserController
         // </script>
 
     }
+    function getConnexionErrors(){
+        
+        $errors = [];
+        !$this->isEmailValid() ? array_push($errors, "emailError=InputInvalid") : null;
+
+        !$this->isPasswordValid() ? array_push($errors, "passwordError=InputInvalid") : null;
+
+        return join("&", $errors);
+    }
 
     /**
      * Get the value of RePassword
-     */ 
+     */
     public function getRePassword()
     {
         return $this->RePassword;

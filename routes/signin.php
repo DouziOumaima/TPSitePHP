@@ -1,31 +1,34 @@
 <?php 
-//session_start();
+session_start();
 
 include_once $_SERVER['DOCUMENT_ROOT']. "/controllers/UserController.php";
  
 
 
 if(!(isset($_POST['email'], $_POST['password']))){
+       header ("Location: /login.php");
+       die();
+    }
 
     $user = new UserController( '', $_POST['email'], $_POST['password'],'');
 
-     if($user -> isDataValid()){
-
-        header("Location: /login.php?" . $user ->getErrors());
+     if(!($user -> isEmailValid()&& $user -> isPasswordValid())){
+        header("Location: /login.php?connexion=error&" . $user ->getConnexionErrors());
         die();
      }
      //  func qui return Soit false si elle ne trouve pa l'utilisateur soit elle nous rend l'utilisateur (tab asso)
 
      // verifier Si l'utilisateur exist dans la base de données sinon on affichera msg d'erreur
      if(!$user -> exist()){
-        header("Location: /login.php?connexion=error&emailError=EmailDosntExist" );
+        header("Location: /login.php?connexion=error&emailError=EmailDoesntExist" );
         die();
       }
-
-    
-   
-  } 
-  var_dump($_SESSION);
+      
+      if(!$user -> isPasswordCorrect()){
+         header("Location: /login.php?connexion=error&passwordError=PasswordIncorrect" );
+         die();
+       }
+  //var_dump($_SESSION);
 
 //$_SESSION["id"] = $user -> getId();
 //$_SESSION['username']=$user ->getUsername();

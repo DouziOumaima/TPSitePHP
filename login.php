@@ -10,6 +10,9 @@ $inscriptionPasswordError = "";
 
 $inscriptionRePasswordError ="";
 
+$connexionEmailError ="";
+
+$connexionPasswordError ="";
 
 if (isset($_GET['inscription'])) {
     if (isset($_GET['usernameError'])) {
@@ -28,8 +31,21 @@ if (isset($_GET['inscription'])) {
         $inscriptionRePasswordError = $_GET['RePasswordError'] ===
         "InputInvalid" ? " Ressaisir le meme mot de passe" : "";
       }
+    }
       //var_dump($inscriptionRePasswordError);
-} // on n'a pas les msg qui s'affichent
+// on n'a pas les msg qui s'affichent
+  
+if (isset($_GET['connexion'])) {
+    if (isset($_GET['connexionEmailError'])) {
+        $connexionEmailError = $_GET['EmailError'] === "InputInvalid" ? "Email incorrecte" : "";
+    }
+    
+        if (isset($_GET['connexionPasswordError'])) {
+            $connexionPasswordError = $_GET['PasswordError'] === "InputInvalid" ? "Password incorrecte" : "";
+        }
+        
+        
+}
   
 ?>
 <!DOCTYPE html>
@@ -100,8 +116,23 @@ include_once "./components/head.php"
 
             <h2>Connexion</h2>
             <form action="/routes/signin.php" method="post">
-                <input type="email" name="email" placeholder="jhon .doe@exemple.com" />
-                <input type="password" name=" password" placeholder="Mot de passe">
+                <input class='<?= $connexionEmailError !=="" ? "inputError" : "" ?>' 
+                type="email" 
+                name="email" 
+                placeholder="jhon .doe@exemple.com" />
+                <p class="error">
+            <?= $connexionEmailError ?>
+          </p>
+
+                <input class='<?= $connexionPasswordError !=="" ? "inputError" : "" ?>' 
+                 type="password"
+                  name=" password" 
+                  placeholder="Mot de passe">
+
+                  <p class="error">
+            <?= $connexionPasswordError ?>
+          </p>
+                
                 <button>Valider</button>
             </form>
 

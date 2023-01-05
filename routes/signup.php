@@ -13,8 +13,8 @@ if (isset($_POST['username'],  $_POST['email'], $_POST['password'] , $_POST['ReP
   if ($user->isDataValid()) {
 
     if ($user->exist()) {
+      
       header('Location: /login?inscription=error&emailError=EmailExist');
-     
       die();
     }
 
