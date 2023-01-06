@@ -1,5 +1,5 @@
 <?php 
-session_start();
+session_start();// si elle ne trouve pas le cookie elle va le créer si elle le trouve elle va récuperer l'info qui a dedans et nous les données sous forme de tab asso
 
 include_once $_SERVER['DOCUMENT_ROOT']. "/controllers/UserController.php";
  
@@ -20,7 +20,7 @@ if(!(isset($_POST['email'], $_POST['password']))){
 
      // verifier Si l'utilisateur exist dans la base de données sinon on affichera msg d'erreur
      if(!$user -> exist()){
-        header("Location: /login.php?connexion=error&emailError=EmailDoesntExist" );
+        header("Location: /login.php?connexion=error&emailError=EmailDoesnotExist" );
         die();
       }
 
@@ -31,11 +31,11 @@ if(!(isset($_POST['email'], $_POST['password']))){
          var_dump('getConnexionErrors');
        }
   //var_dump($_SESSION);
-
+  
+ // getId ,getEmail ... On les a creer dans userController(getter et setter)
 $_SESSION["id"] = $user -> getId();
 $_SESSION['username']=$user ->getUsername();
 $_SESSION["email"] = $user ->getEmail();
-//$_SESSION["password"] = $user ->getPassword();
 $_SESSION["avatar"] = $user -> getAvatar();
 $_SESSION["cover"] = $user -> getCover();
 $_SESSION["role"] = $user -> getRole();

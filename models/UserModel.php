@@ -25,7 +25,7 @@ include_once  $_SERVER['DOCUMENT_ROOT'] . "/models/DB.php";
 
     $res = $stmt -> execute();
     
-    $userFromDB = $stmt -> fetch(PDO::FETCH_ASSOC);
+    $userFromDB = $stmt -> fetch(PDO::FETCH_ASSOC);// ramener un seul utilisateur sous forme de tab assoc
 
     if(is_bool($userFromDB)){
       return [];

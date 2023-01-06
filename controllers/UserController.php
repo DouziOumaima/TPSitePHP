@@ -164,6 +164,15 @@ class UserController
         return $this;
     }
 
+    /**
+     * Get the value of RePassword
+     */
+    public function getRePassword()
+    {
+        return $this->RePassword;
+    }
+
+
     function isEmailValid(): bool // verfier que l'email est valid (a une format email)
     {
         return filter_var($this->email, FILTER_VALIDATE_EMAIL);
@@ -196,15 +205,15 @@ class UserController
 
         $userTab = $userModel->fetch(); // fetch elle retourne la valeur qu'elle a trouver dans la DB
         // var_dump($userTab);
-        if (count($userTab) === 0) {
-            return false;
+        if (count($userTab) === 0) /*tester si le tab est vide*/ {
+            return false;// Il n'exist pas
         } else {
 
             $this -> id = $userTab['id'];
             $this -> avatar = $userTab['avatar'];
             $this -> role = $userTab['role'];
             $this -> cover = $userTab['cover'];
-            
+
             return true;
         }
     }
@@ -257,14 +266,6 @@ class UserController
 
         //var_dump( 'getConnexionErrors');
         //var_dump ('errors');
-    }
-
-    /**
-     * Get the value of RePassword
-     */
-    public function getRePassword()
-    {
-        return $this->RePassword;
     }
 
     static function createUserFromId($id)
