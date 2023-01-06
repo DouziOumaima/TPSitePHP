@@ -6,7 +6,7 @@ if(isset($_FILES['cover'])){
 
     $userController = UserController::createUserFromId($_SESSION['id']);
 
-if($userController -> isImageValid($_FILES['cover'])){
+if($userController -> isCoverValid($_FILES['cover'])){
     $_SESSION['cover'] = $userController -> saveCover($_FILES['cover']);
   header('Location: /profil.php');
   die();

@@ -2,6 +2,8 @@
 
 include_once $_SERVER['DOCUMENT_ROOT'] . "/models/UserModel.php";
 
+include_once $_SERVER['DOCUMENT_ROOT'] . "/controllers/PostController.php";
+
 class UserController
 {
 
@@ -206,13 +208,13 @@ class UserController
         $userTab = $userModel->fetch(); // fetch elle retourne la valeur qu'elle a trouver dans la DB
         // var_dump($userTab);
         if (count($userTab) === 0) /*tester si le tab est vide*/ {
-            return false;// Il n'exist pas
+            return false; // Il n'exist pas
         } else {
 
-            $this -> id = $userTab['id'];
-            $this -> avatar = $userTab['avatar'];
-            $this -> role = $userTab['role'];
-            $this -> cover = $userTab['cover'];
+            $this->id = $userTab['id'];
+            $this->avatar = $userTab['avatar'];
+            $this->role = $userTab['role'];
+            $this->cover = $userTab['cover'];
 
             return true;
         }
@@ -285,27 +287,72 @@ class UserController
         return $controller;
     }
 
-    function isImageValid($avatar){
-        $imageInfo = pathinfo($avatar['username']);
+    function isImageValid($avatar)
+    {
+        $imageInfo = pathinfo($avatar['name']);
 
-         return in_array($imageInfo['extension'], array('jpg', 'jpeg', 'png', 'gif', 'svg'));
-}
-function saveImage($avatar){
-    $imageInfo = pathinfo($avatar['username']);
-    $image = $_SESSION['id'].'.'.$imageInfo['extension'];
-    copy($avatar['tmp_name'], '../images/users/'. $image);
+        return in_array($imageInfo['extension'], array('jpg', 'jpeg', 'png', 'gif', 'svg'));
+    }
+    function saveImage($avatar)
+    {
+        $imageInfo = pathinfo($avatar['name']);
+        $image = $_SESSION['id'] . '.' . $imageInfo['extension'];
+        copy($avatar['tmp_name'], '../images/Avatars/' . $image);
 
-    //Utiliser le model pour mettre a jour user dans la DB.
-    $this ->userModel -> saveImageToDB($image);
-    return $image;
-  }
-  function saveCover($cover){
-    $imageInfo = pathinfo($cover)['username'];
-    $image = $_SESSION['id'].'.'.$imageInfo['extension'];
-    copy($cover['tmp_name'], '../images/users/'. $image);
+        //Utiliser le model pour mettre a jour user dans la DB.
+        $this->userModel->saveImageToDB($image);
+        return $image;
+    }
+    function isCoverValid($cover)
+    {
+        $imageInfo = pathinfo($cover['name']);
 
-    //Utiliser le model pour mettre a jour user dans la DB.
-    $this ->userModel -> saveCoverToDB($image);
-    return $image;
-  }
+        return in_array($imageInfo['extension'], array('jpg', 'jpeg', 'png', 'gif', 'svg'));
+    }
+
+    function saveCover($cover)
+    {
+        $imageInfo = pathinfo($cover['name']);
+        $image = $_SESSION['id'] . '.' . $imageInfo['extension'];
+        copy($cover['tmp_name'], '../images/covers/' . $image);
+        -
+
+        //Utiliser le model pour mettre a jour user dans la DB.
+        $this->userModel->saveCoverToDB($image);
+        return $image;
+    }
+
+    function isPostValid($post)
+    {
+        $imageInfo = pathinfo($post['name']);
+
+        return in_array($imageInfo['extension'], array('jpg', 'jpeg', 'png', 'gif', 'svg'));
+    }
+    function savePost($post)
+    {
+        $imageInfo = pathinfo($post['name']);
+        $image = $_SESSION['id'] . '.' . $imageInfo['extension'];
+        copy($post['tmp_name'], '../images/posts/' . $image);
+
+        //Utiliser le model pour mettre a jour user dans la DB.
+        $this->userModel->savePostToDB($image);
+        return $image;
+    }
+    function addPost($post)
+    {
+        $postController = new PostController($titre, $contenu, $postImage, $this->id);
+
+        $postController->addPost();
+    }
+
+    /**
+     * Get the value of posts
+     */ 
+    public function getPosts()
+    {
+        return $this->posts;
+    }
+    function validatePost($postID){
+        PostController::validatePost($postID);
+      }
 }

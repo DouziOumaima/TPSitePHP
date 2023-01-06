@@ -1,7 +1,7 @@
 <?php 
 session_start();
 include_once "../controllers/UserController.php";
-
+ 
 if(isset($_FILES['avatar'])){
 
 

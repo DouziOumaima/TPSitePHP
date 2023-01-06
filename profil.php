@@ -16,6 +16,10 @@ $userController = UserController::createUserFromId($_SESSION['id']);
 <?php
 $title = "Page de profil";
 include_once "./components/head.php";
+
+
+//var_dump($_FILES);
+
 ?>
 
 <body>
@@ -24,9 +28,9 @@ include_once "./components/head.php";
     ?>
     <div class="profil-infos">
         <div class="parent">
-            <img id="cover" src='<?= "/images/users/" . $_SESSION['cover'] ?>'>
+            <img id="cover" src='<?= "/images/covers/" . $_SESSION['cover'] ?>'>
 
-            <img id="avatar" src='<?= "/images/users/" . $_SESSION['avatar'] ?>'>
+            <img id="avatar" src='<?= "/images/Avatars/" . $_SESSION['avatar'] ?>'>
         </div>
 
         <p><?= $_SESSION['username'] ?></p>
@@ -34,7 +38,7 @@ include_once "./components/head.php";
         -->
         <div>
             <h2>Changement de photo de couverture</h2>
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="./routes/uploadCover.php" method="POST" enctype="multipart/form-data">
                 <input type="file" name="cover" accept="image/png, image/jpeg, image/gif" />
                 <button type="submit">Enregistrer</button>
             </form>
@@ -43,7 +47,7 @@ include_once "./components/head.php";
         -->
         <div>
             <h2>Changement de photo de profil</h2>
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="./routes/uploadAvatar.php" method="POST" enctype="multipart/form-data">
                 <input type="file" name="avatar" accept="image/png, image/jpeg, image/gif" />
                 <button type="submit">Enregistrer</button>
             </form>
@@ -51,7 +55,7 @@ include_once "./components/head.php";
 
     </div>
     <div>
-        <form class="unpost" action="" method="POST" enctype="multipart/form-data">
+        <form class="post" action="/routes/uploadPost.php" method="POST" enctype="multipart/form-data">
             <input type="text" name="titre" placeholder="Ajouter un titre">
             <textarea name="contenu" id="contenu" cols="30" rows="10" placeholder="Ajouter un contenu"></textarea>
             <input type="file" name="ajouterimage" accept="image/png, image/jpeg, image/gif" />

@@ -66,4 +66,13 @@ function saveCoverToDB($image){
   $stmt ->execute();
 }
 //creer la function fetch  et utiliser la et stmt , connexion (getConnect)
+
+function savePostToDB($image){
+  $stmt = $this -> getConnect() -> prepare("UPDATE posts SET post=? WHERE email=?");
+  $stmt ->bindParam(1, $image);
+  $stmt ->bindParam(2, $this -> email);
+  $stmt ->execute();
+}
+
+
 }
