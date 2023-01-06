@@ -52,8 +52,8 @@ include_once "./components/head.php";
     </div>
     <div>
         <form class="unpost" action="" method="POST" enctype="multipart/form-data">
-            <input type="text" name="titre">
-            <textarea name="contenu" id="contenu" cols="30" rows="10"></textarea>
+            <input type="text" name="titre" placeholder="Ajouter un titre">
+            <textarea name="contenu" id="contenu" cols="30" rows="10" placeholder="Ajouter un contenu"></textarea>
             <input type="file" name="ajouterimage" accept="image/png, image/jpeg, image/gif" />
             <button type="submit">Valider</button>
         </form>

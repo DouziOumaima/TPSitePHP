@@ -277,11 +277,35 @@ class UserController
         $controller->id = $id;
         $controller->username = $userFromDB['username'];
         //$controller->role = $userFromDB['role'];
-        //$controller->avatar = $userFromDB['avatar'];
-        //$controller->cover = $userFromDB['cover'];
+        $controller->avatar = $userFromDB['avatar'];
+        $controller->cover = $userFromDB['cover'];
 
         // $controller -> posts = PostsController::fetchAll($id);
 
         return $controller;
     }
+
+    function isImageValid($avatar){
+        $imageInfo = pathinfo($avatar['username']);
+
+         return in_array($imageInfo['extension'], array('jpg', 'jpeg', 'png', 'gif', 'svg'));
+}
+function saveImage($avatar){
+    $imageInfo = pathinfo($avatar['username']);
+    $image = $_SESSION['id'].'.'.$imageInfo['extension'];
+    copy($avatar['tmp_name'], '../images/users/'. $image);
+
+    //Utiliser le model pour mettre a jour user dans la DB.
+    $this ->userModel -> saveImageToDB($image);
+    return $image;
+  }
+  function saveCover($cover){
+    $imageInfo = pathinfo($cover)['username'];
+    $image = $_SESSION['id'].'.'.$imageInfo['extension'];
+    copy($cover['tmp_name'], '../images/users/'. $image);
+
+    //Utiliser le model pour mettre a jour user dans la DB.
+    $this ->userModel -> saveCoverToDB($image);
+    return $image;
+  }
 }

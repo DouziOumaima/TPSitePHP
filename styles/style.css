@@ -55,11 +55,12 @@ input{
   }
 
   .parent{
+     height: 30em;
      width: 90em;
      position: relative;
      display: flex;
      flex-direction: column;
      justify-content: center;
      align-items: center;
-
+     
   }

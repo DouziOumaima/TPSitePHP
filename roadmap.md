@@ -38,18 +38,18 @@ S'authentifier (email unique, username, password).
 
 
 ## Profil: 
-Les informations de l'utilisateur (avatar, username, email, couverture), un formulaire pour créer un post.
+Les informations de l'utilisateur (avatar, username, email, couverture), un formulaire pour créer un post. DONE
 
-- Afficher l'image de couverture de l'utilisateur, sinon afficher une image par défaut. 
-- Afficher l'avatar de l'utilisateur, sinon afficher une image par défaut. 
+- Afficher l'image de couverture de l'utilisateur, sinon afficher une image par défaut. DONE
+- Afficher l'avatar de l'utilisateur, sinon afficher une image par défaut. DONE
 
-- Un formulaire pour changer l'image de couverture.
+- Un formulaire pour changer l'image de couverture.DONE
 - - Un script (/routes/uploadCover.php), enregistre l'image de couverture, et met a jour l'utilisateur dans la base de données.
 
-- Un formulaire pour changer l'image de profil.
+- Un formulaire pour changer l'image de profil.DONE
 - - Un script (/routes/uploadPost.php), enregistre l'image de l'avatar, et met a jour l'utilisateur dans la base de données.
 
-- Afficher le formulaire pour ajouter un post
+- Afficher le formulaire pour ajouter un post DONE
 - - Un script (/routes/uploadPost.php), enregistre l'image, et met a jour l'utilisateur dans la base de données 
 
 - Afficher tous les posts de l'utilisateur:

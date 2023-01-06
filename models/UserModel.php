@@ -53,6 +53,17 @@ static function fetchByID($id){
   $userFromDB = $stmt -> fetch(PDO::FETCH_ASSOC);
   return $userFromDB;
 }
-
+function saveImageToDB($image){
+  $stmt = $this -> getConnect() -> prepare("UPDATE users SET avatar=? WHERE email=?");
+  $stmt ->bindParam(1, $image);
+  $stmt ->bindParam(2, $this -> email);
+  $stmt ->execute();
+}
+function saveCoverToDB($image){
+  $stmt = $this -> getConnect() -> prepare("UPDATE users SET cover=? WHERE email=?");
+  $stmt ->bindParam(1, $image);
+  $stmt ->bindParam(2, $this -> email);
+  $stmt ->execute();
+}
 //creer la function fetch  et utiliser la et stmt , connexion (getConnect)
 }
